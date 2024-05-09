@@ -1,0 +1,38 @@
+nest new backend    //nest new "name folder"
+npm run start:dev   //после сохранения идет перезапуск автоматически
+
+nest g module user  //для создание модуля nest g module "name module"
+
+nest g controller user --no-spec  //для создание контроллера nest g controller "name controller" "чтобы не было файла тест"
+
+
+
+
+nest g service user --no-spec  //для создание контроллера nest g controller "name service" "чтобы не было файла тест"
+
+
+sudo docker-compose up   //установка бд
+-d — запуск контейнер в фоновом режиме. Это позволяет использовать терминал, из которого запущен контейнер, для выполнения других команд во время работы контейнера.
+
+npm i --save @nestjs/config  //https://docs.nestjs.com/techniques/configuration
+
+
+//подключаем Sequelize для работы с БД  https://docs.nestjs.com/recipes/sql-sequelize
+
+npm install --save sequelize sequelize-typescript pg   ///устанавливаем  sequelize с пакетом для работы с БД pg
+
+npm install --save-dev @types/sequelize //подклучаем типизацию sequelize
+
+npm i --save @nestjs/sequelize
+
+
+
+
+
+
+
+
+
+
+
+
