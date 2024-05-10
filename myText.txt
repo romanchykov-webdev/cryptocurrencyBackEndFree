@@ -27,6 +27,28 @@ npm i --save @nestjs/sequelize
 
 
 
+//Чтобы начать его использовать, мы сначала устанавливаем необходимую
+//зависимость.
+// RESTful API. Nest предоставляет специальный модуль, который позволяет
+//генерировать такую ​​спецификацию с помощью декораторов.
+npm install --save @nestjs/swagger
+
+
+
+// нужно скачать пакет для валидации
+npm i class-validator
+
+
+///
+npm install class-transformer
+
+//Hashing# hashing to password
+npm i bcrypt
+// для тепизации
+npm i -D @types/bcrypt
+
+
+
 
 
 
