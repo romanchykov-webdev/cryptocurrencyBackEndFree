@@ -1,25 +1,26 @@
-import { IsString } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
+import { IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
-class UserResponse {
-  @ApiProperty()
-  @IsString()
-  firstName: string
+export class AuthUserResponse{
 
-  @ApiProperty()
+  @ApiProperty() //это декоратор из модуля @nestjs/swagger, который используется для добавления метаданных к свойствам класса. Эти метаданные затем используются для автоматической генерации OpenAPI (Swagger) документации вашего API.
   @IsString()
-  userName: string
+  firstName:string
 
   @ApiProperty()
   @IsString()
-  email: string
-}
-
-export class AuthUserResponse {
-  @ApiProperty()
-  user: UserResponse
+  userName:string
 
   @ApiProperty()
   @IsString()
-  token: string
+  email:string
+
+  @ApiProperty()
+  @IsString()
+  password:string
+
+  @ApiProperty()
+  @IsString()
+  token:string
+
 }
