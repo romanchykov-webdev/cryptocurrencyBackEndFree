@@ -54,6 +54,14 @@ npx nest g controller auth --no-spec
 // create service without test file
 npx nest g service auth --no-spec
 
+//create module token
+npx nest g module token
+//create service token without test file
+npx nest g service token --no-spec
+
+//install jwt token
+npm i --save @nestjs/jwt
+
 
 
 
