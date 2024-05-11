@@ -62,9 +62,10 @@ npx nest g service token --no-spec
 //install jwt token
 npm i --save @nestjs/jwt
 
+//
+npm install --save @nestjs/passport passport passport-jwt
 
-
-
+npm install --save-dev @types/passport-jwt
 
 
 
