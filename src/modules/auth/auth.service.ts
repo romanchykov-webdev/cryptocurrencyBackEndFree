@@ -57,7 +57,10 @@ export class AuthService {
     const token =await this.tokenService.generationJwtToken(dto.email)
     //create jwt token end--
 
-    return {...existUser, token:token };
+    //get public user {exclude password}
+    const user= await this.userService.publicUser(dto.email)
+    //get public user {exclude password} end --
+    return {...user, token:token };
   }
 
 //login user end-----------------------

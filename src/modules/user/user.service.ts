@@ -53,5 +53,17 @@ export class UserService {
     return dto;
   }
 
+  //remove password to respond
+  async publicUser(email: string) {
+    return this.userRepository.findOne(
+      {
+        where: { email: email },
+        attributes: { exclude: ['password'] },
+      },
+    );
+  }
+
+  //remove password to respond end---
+
 
 }
