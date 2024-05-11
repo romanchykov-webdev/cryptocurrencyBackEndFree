@@ -47,6 +47,14 @@ npm i bcrypt
 // для тепизации
 npm i -D @types/bcrypt
 
+// create nev module  auth
+npx nest g module auth
+// crete controller without test file
+npx nest g controller auth --no-spec
+// create service without test file
+npx nest g service auth --no-spec
+
+
 
 
 
