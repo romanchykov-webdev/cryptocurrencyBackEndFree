@@ -13,7 +13,7 @@ export class UserController {
 //   return this.userService.getUsers();
 // }
 
-  @Post('create-user')
+  @Post('create-users')
   createUsers(@Body() dto: CreateUserDTO){
     console.log(dto);
     return this.userService.createUser(dto)
