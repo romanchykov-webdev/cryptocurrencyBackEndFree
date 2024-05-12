@@ -47,8 +47,25 @@ npm i bcrypt
 // для тепизации
 npm i -D @types/bcrypt
 
+// create nev module  auth
+npx nest g module auth
+// crete controller without test file
+npx nest g controller auth --no-spec
+// create service without test file
+npx nest g service auth --no-spec
 
+//create module token
+npx nest g module token
+//create service token without test file
+npx nest g service token --no-spec
 
+//install jwt token
+npm i --save @nestjs/jwt
+
+//
+npm install --save @nestjs/passport passport passport-jwt
+
+npm install --save-dev @types/passport-jwt
 
 
 
