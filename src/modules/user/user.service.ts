@@ -3,7 +3,7 @@ import { users } from '../../moks';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './models/user.model';
 import * as bcrypt from 'bcrypt';
-import { CreateUserDTO } from './dto';
+import { CreateUserDTO, UpdateUserDTO } from './dto';
 import { AppError } from '../../common/constants/errors';
 
 
@@ -12,10 +12,6 @@ export class UserService {
 
   constructor(@InjectModel(User) private readonly userRepository: typeof User) {
   }
-
-//getUsers(){
-//  return users;
-// }
 
   //hashing to password
   async hashPassword(password: string) {
@@ -64,6 +60,20 @@ export class UserService {
   }
 
   //remove password to respond end---
+
+  //Update user
+  async updateUser(email: string, dto: UpdateUserDTO):Promise<UpdateUserDTO> {
+    await this.userRepository.update(dto, { where: { email: email } });
+    return dto
+  }
+  //Update user end------
+
+  //delete user account
+  async deleteUser(email:string ){
+    await this.userRepository.destroy({where:{email:email}})
+    return true
+  }
+  //delete user account end---
 
 
 }

@@ -51,16 +51,21 @@ export class AuthService {
     if (!validatePassword) throw new BadRequestException(AppError.WRONG_DATA);
     // if password is error end --
 
+    const userData = {
+      name: existUser.firstName,
+      email: existUser.email,
+    };
+
 //verification re hash password end ---
 
     //create jwt token
-    const token =await this.tokenService.generationJwtToken(dto.email)
+    const token = await this.tokenService.generationJwtToken(userData);
     //create jwt token end--
 
     //get public user {exclude password}
-    const user= await this.userService.publicUser(dto.email)
+    const user = await this.userService.publicUser(dto.email);
     //get public user {exclude password} end --
-    return {...user, token:token };
+    return { ...user, token: token };
   }
 
 //login user end-----------------------
