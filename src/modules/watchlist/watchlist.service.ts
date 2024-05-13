@@ -12,7 +12,7 @@ export class WatchlistService {
 
   async createAsset(user, dto): Promise<CreateAssetsResponse> {
     const watchlist = {
-      user: user.id,
+      userId: user.id,
       name: dto.name,
       assetId: dto.assetId,
     };
@@ -24,7 +24,7 @@ export class WatchlistService {
     await this.watchlistRepository.destroy({
       where: {
         id: assetId,
-        user: userId,
+        userId: userId,
       },
     });
     return true;
