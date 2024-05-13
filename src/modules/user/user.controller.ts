@@ -11,10 +11,10 @@ export class UserController {
 
   //update user
   @ApiTags('API')
-  @ApiResponse({status:200,type:UpdateUserDTO})
+  @ApiResponse({ status: 200, type: UpdateUserDTO })
   @UseGuards(JwtAuthGuard)
   @Patch()
-  updateUser(@Body() updateDTO: UpdateUserDTO, @Req() request):Promise<UpdateUserDTO> {
+  updateUser(@Body() updateDTO: UpdateUserDTO, @Req() request): Promise<UpdateUserDTO> {
 
     const user = request.user;
     //console.log(user);
@@ -25,12 +25,13 @@ export class UserController {
 
   //delete account user
   @ApiTags('API')
-  @ApiResponse({status:200,})
+  @ApiResponse({ status: 200 })
   @UseGuards(JwtAuthGuard)
   @Delete()
-  deleteUser(@Req() request){
-    const user=request.user
-    return this.userService.deleteUser(user.email)
+  deleteUser(@Req() request): Promise<boolean> {
+    const user = request.user;
+    return this.userService.deleteUser(user.email);
   }
+
   //delete account user end---
 }

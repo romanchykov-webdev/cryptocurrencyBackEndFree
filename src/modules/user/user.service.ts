@@ -1,16 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { users } from '../../moks';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './models/user.model';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDTO, UpdateUserDTO } from './dto';
-import { AppError } from '../../common/constants/errors';
-
 
 @Injectable()
 export class UserService {
-
-  constructor(@InjectModel(User) private readonly userRepository: typeof User) {
+  constructor(
+    @InjectModel(User) private readonly userRepository: typeof User,
+  ) {
   }
 
   //hashing to password
@@ -18,17 +16,9 @@ export class UserService {
     return bcrypt.hash(password, 10);
   }
 
-
   //find user by email
   async findUserByEmail(email: string) {
-    return this.userRepository.findOne(
-      {
-        where: {
-          email: email,
-        },
-      },
-    );
-
+    return this.userRepository.findOne({ where: { email: email } });
   }
 
   //create new user
@@ -51,29 +41,27 @@ export class UserService {
 
   //remove password to respond
   async publicUser(email: string) {
-    return this.userRepository.findOne(
-      {
-        where: { email: email },
-        attributes: { exclude: ['password'] },
-      },
-    );
+    return this.userRepository.findOne({
+      where: { email: email },
+      attributes: { exclude: ['password'] },
+    });
   }
 
   //remove password to respond end---
 
   //Update user
-  async updateUser(email: string, dto: UpdateUserDTO):Promise<UpdateUserDTO> {
+  async updateUser(email: string, dto: UpdateUserDTO): Promise<UpdateUserDTO> {
     await this.userRepository.update(dto, { where: { email: email } });
-    return dto
+    return dto;
   }
+
   //Update user end------
 
   //delete user account
-  async deleteUser(email:string ){
-    await this.userRepository.destroy({where:{email:email}})
-    return true
+  async deleteUser(email: string): Promise<boolean> {
+    await this.userRepository.destroy({ where: { email: email } });
+    return true;
   }
+
   //delete user account end---
-
-
 }

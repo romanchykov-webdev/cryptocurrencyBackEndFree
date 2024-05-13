@@ -67,8 +67,12 @@ npm install --save @nestjs/passport passport passport-jwt
 
 npm install --save-dev @types/passport-jwt
 
-remove github desctop
+remove github desktop
 
+//create dir watchlist
+npx nest g module watchlist
+npx nest g service watchlist --no-spec
+npx nest g controller watchlist --no-spec
 
 
 
