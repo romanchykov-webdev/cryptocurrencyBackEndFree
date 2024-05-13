@@ -8,6 +8,7 @@ import { UserLoginDTO } from './dto';
 import * as bcrypt from 'bcrypt';
 
 import { TokenService } from '../token/token.service';
+import { AuthUserResponse } from './response';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +30,7 @@ export class AuthService {
   //registration user end---------------------
 
   //login user
-  async lorinUser(dto: UserLoginDTO): Promise<any> {
+  async lorinUser(dto: UserLoginDTO): Promise<AuthUserResponse> {
     //find user by email in DB
     const existUser = await this.userService.findUserByEmail(dto.email);
     //find user by email in DB end--

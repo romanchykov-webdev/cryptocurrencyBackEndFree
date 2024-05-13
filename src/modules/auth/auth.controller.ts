@@ -27,7 +27,7 @@ export class AuthController {
   @ApiResponse({ status: 200, type: AuthUserResponse })
   //to describer the documentation end--
   @Post('login')
-  login(@Body() dto: UserLoginDTO): Promise<any> {
+  login(@Body() dto: UserLoginDTO): Promise<AuthUserResponse> {
     return this.authService.lorinUser(dto);
   }
 
