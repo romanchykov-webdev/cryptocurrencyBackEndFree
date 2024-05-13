@@ -6,7 +6,6 @@ import { CreateUserDTO } from '../user/dto';
 import { UserLoginDTO } from './dto';
 
 import * as bcrypt from 'bcrypt';
-import { AuthUserResponse } from './response';
 
 import { TokenService } from '../token/token.service';
 
