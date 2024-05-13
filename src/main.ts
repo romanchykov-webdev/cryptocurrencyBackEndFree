@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 //для валидации data
-import {ValidationPipe} from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,20 +13,20 @@ async function bootstrap() {
   const port = configService.get('port');
 
   //pipe
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe());
   //pipe end
 
   //создание описания API
-  const config=new DocumentBuilder()
+  const config = new DocumentBuilder()
     .setTitle('API testing documentation')
     .setDescription('this API for testing documentation')
     .setVersion('1.0')
     .addTag('API')
-    .build()
+    .build();
 
-  const document =SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('api',app,document);
+  SwaggerModule.setup('api', app, document);
   //создание описания API end
 
 
