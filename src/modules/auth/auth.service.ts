@@ -30,7 +30,7 @@ export class AuthService {
   //registration user end---------------------
 
   //login user
-  async lorinUser(dto: UserLoginDTO): Promise<AuthUserResponse> {
+  async lorinUser(dto: UserLoginDTO): Promise<any> {
     //find user by email in DB
     const existUser = await this.userService.findUserByEmail(dto.email);
     //find user by email in DB end--
@@ -64,7 +64,7 @@ export class AuthService {
     const token = await this.tokenService.generationJwtToken(user);
     //create jwt token end--
 
-    return { ...user, token: token };
+    return { user, token: token };
   }
 
   //login user end-----------------------

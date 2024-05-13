@@ -3,13 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from './models/user.model';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDTO, UpdateUserDTO } from './dto';
+import { Watchlist } from '../watchlist/models/watchlist.model';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User) private readonly userRepository: typeof User,
-  ) {
-  }
+  ) {}
 
   //hashing to password
   async hashPassword(password: string) {
@@ -44,6 +44,10 @@ export class UserService {
     return this.userRepository.findOne({
       where: { email: email },
       attributes: { exclude: ['password'] },
+      include: {
+        model: Watchlist,
+        required: false,
+      },
     });
   }
 
