@@ -18,16 +18,18 @@ export class AuthService {
   ) {}
 
   //registration user
-  async registerUsers(dto: CreateUserDTO): Promise<CreateUserDTO> {
+  async registerUsers(dto: CreateUserDTO): Promise<AuthUserResponse> {
     try {
       //if has user
       const existUser = await this.userService.findUserByEmail(dto.email);
 
       if (existUser) throw new BadRequestException(AppError.USER_EXIST);
       //if  has user  end --
-      return this.userService.createUser(dto);
+
+      await this.userService.createUser(dto);
+      return this.userService.publicUser(dto.email);
     } catch (error) {
-      throw new Error(error);
+      throw new BadRequestException(AppError.USER_EXIST);
     }
   }
 
@@ -61,15 +63,7 @@ export class AuthService {
 
       //verification re hash password end ---
 
-      //get public user {exclude password}
-      const user = await this.userService.publicUser(dto.email);
-      //get public user {exclude password} end --
-
-      //create jwt token
-      const token = await this.tokenService.generationJwtToken(user);
-      //create jwt token end--
-
-      return { user, token: token };
+      return this.userService.publicUser(dto.email);
     } catch (error) {
       throw new Error(error);
     }

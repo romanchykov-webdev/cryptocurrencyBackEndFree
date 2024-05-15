@@ -15,7 +15,7 @@ export class AuthController {
   @ApiResponse({ status: 201, type: CreateUserDTO })
   //to describer the documentation end--
   @Post('register')
-  register(@Body() dto: CreateUserDTO): Promise<CreateUserDTO> {
+  register(@Body() dto: CreateUserDTO): Promise<AuthUserResponse> {
     return this.authService.registerUsers(dto);
   }
 
