@@ -1,9 +1,7 @@
 import {
   Body,
   Controller,
-  Delete,
-  Get,
-  Patch,
+  Delete, Get,
   Post,
   Query,
   Req,
@@ -12,12 +10,14 @@ import {
 import { WatchlistService } from './watchlist.service';
 import { WatchlistDTO } from './dto';
 import { JwtAuthGuard } from '../../guards/jwt-guard';
-import { CreateAssetsResponse } from './response';
+import { CreateAssetsResponse, GetUserAssetsResponse } from './response';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Watchlist } from './models/watchlist.model';
 
 @Controller('watchlist')
 export class WatchlistController {
-  constructor(private readonly watchlistService: WatchlistService) {}
+  constructor(private readonly watchlistService: WatchlistService) {
+  }
 
   @ApiTags('API')
   @ApiResponse({ status: 201, type: CreateAssetsResponse })
@@ -40,7 +40,21 @@ export class WatchlistController {
   //updateAsset() {
   //  return;
   // }
+  //get asset element
+  @ApiTags('API')
+  @ApiResponse({ status: 200, type: GetUserAssetsResponse })
+  @UseGuards(JwtAuthGuard)
+  @Get('get-elements')
+  getUserAssets(@Req() request): Promise<Watchlist[]> {
+    const user = request.user;
+    // console.log('------------');
+    // console.log(user);
+    // console.log(user.id);
+    // console.log('-----------');
+    return this.watchlistService.getUserAssets(user.id);
+  }
 
+  //deleteAsset
   @ApiTags('API')
   @ApiResponse({ status: 200 })
   @UseGuards(JwtAuthGuard)

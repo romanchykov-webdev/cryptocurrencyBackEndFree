@@ -8,7 +8,8 @@ export class WatchlistService {
   constructor(
     @InjectModel(Watchlist)
     private readonly watchlistRepository: typeof Watchlist,
-  ) {}
+  ) {
+  }
 
   async createAsset(user, dto): Promise<CreateAssetsResponse> {
     try {
@@ -19,6 +20,14 @@ export class WatchlistService {
       };
       await this.watchlistRepository.create(watchlist);
       return watchlist;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getUserAssets(userId: number): Promise<Watchlist[]> {
+    try {
+      return this.watchlistRepository.findAll({ where: { userId: userId } });
     } catch (error) {
       throw new Error(error);
     }
