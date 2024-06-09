@@ -75,9 +75,9 @@ export class UserService {
   //remove password to respond end---
 
   //Update user
-  async updateUser(email: string, dto: UpdateUserDTO): Promise<UpdateUserDTO> {
+  async updateUser(userId: number, dto: UpdateUserDTO): Promise<UpdateUserDTO> {
     try {
-      await this.userRepository.update(dto, { where: { email: email } });
+      await this.userRepository.update(dto, { where: { id: userId } });
       return dto;
     } catch (error) {
       throw new Error(error);

@@ -7,13 +7,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDTO, UpdateUserDTO } from './dto';
+import { UpdateUserDTO } from './dto';
 import { JwtAuthGuard } from '../../guards/jwt-guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {
+  }
 
   //update user
   @ApiTags('API')
@@ -26,7 +27,7 @@ export class UserController {
   ): Promise<UpdateUserDTO> {
     const user = request.user;
     //console.log(user);
-    return this.userService.updateUser(user.email, updateDTO);
+    return this.userService.updateUser(user.id, updateDTO);
   }
 
   //update user end--
