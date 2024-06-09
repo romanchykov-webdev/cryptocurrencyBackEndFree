@@ -12,8 +12,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
-  ) {
-  }
+  ) {}
 
   //registration user
   //to describer the documentation
@@ -48,10 +47,4 @@ export class AuthController {
   }
 
   // get public user info end
-
-  //@UseGuards(JwtAuthGuard)
-  //@Post('test')
-  //test() {
-  //  return 'серёга ты лудший';
-  //}
 }
