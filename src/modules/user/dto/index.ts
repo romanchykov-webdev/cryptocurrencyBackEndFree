@@ -19,7 +19,7 @@ export class CreateUserDTO {
   password: string;
 }
 
-export class UpdateUserDTO{
+export class UpdateUserDTO {
   @ApiProperty()
   @IsString()
   firstName: string;
@@ -31,4 +31,14 @@ export class UpdateUserDTO{
   @ApiProperty()
   @IsString()
   email: string;
+}
+
+export class UpdatePasswordDTO {
+  @ApiProperty()
+  @IsString()
+  oldPassword: string;
+
+  @ApiProperty()
+  @IsString()
+  newPassword: string;
 }
