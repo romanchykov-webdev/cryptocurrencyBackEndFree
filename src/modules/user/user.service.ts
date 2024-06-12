@@ -129,9 +129,9 @@ export class UserService {
   //Update user password end------
 
   //delete user account
-  async deleteUser(email: string): Promise<boolean> {
+  async deleteUser(id: number): Promise<boolean> {
     try {
-      await this.userRepository.destroy({ where: { email: email } });
+      await this.userRepository.destroy({ where: { id: id } });
       return true;
     } catch (error) {
       throw new Error(error);
